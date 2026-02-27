@@ -1,7 +1,4 @@
 [test]
-# Enable coverage by default
-coverage = true
-
 # Set coverage thresholds (80% for both lines and functions)
 coverageThreshold = { lines = 0.8, functions = 0.8 }
 
