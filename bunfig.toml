@@ -1,5 +1,6 @@
 [test]
 # Set coverage thresholds (80% for both lines and functions)
+# Bun will fail the test run if coverage is below these thresholds
 coverageThreshold = { lines = 0.8, functions = 0.8 }
 
 # Skip test files from coverage report
