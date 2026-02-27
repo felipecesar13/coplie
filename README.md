@@ -39,10 +39,22 @@ cp .env.example .env
 
 The project includes a `postinstall` script that automatically installs the GitHub Copilot CLI (`@github/copilot`) globally when you run `bun install`. This ensures all developers have the required Copilot CLI tool without manual installation steps.
 
-If you need to manually install the Copilot CLI:
-```bash
-npm install -g @github/copilot
-```
+**Note**: The postinstall script requires permissions to install packages globally. If the installation fails due to permission issues, you can:
+
+1. Install manually with appropriate permissions:
+   ```bash
+   npm install -g @github/copilot
+   ```
+   or with sudo (Linux/macOS):
+   ```bash
+   sudo npm install -g @github/copilot
+   ```
+
+2. Or configure npm to use a directory you have write access to:
+   ```bash
+   npm config set prefix ~/.npm-global
+   export PATH=~/.npm-global/bin:$PATH
+   ```
 
 ## Configuration
 
