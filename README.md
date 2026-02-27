@@ -27,11 +27,21 @@ A TypeScript application built with Bun and Elysia that connects to Linear webho
 cd coplie
 
 # Install dependencies
+# Note: This will automatically install @github/copilot globally via the postinstall script
 bun install
 
 # Copy environment variables
 cp .env.example .env
 # Edit .env with your configuration
+```
+
+### Automated Setup
+
+The project includes a `postinstall` script that automatically installs the GitHub Copilot CLI (`@github/copilot`) globally when you run `bun install`. This ensures all developers have the required Copilot CLI tool without manual installation steps.
+
+If you need to manually install the Copilot CLI:
+```bash
+npm install -g @github/copilot
 ```
 
 ## Configuration
