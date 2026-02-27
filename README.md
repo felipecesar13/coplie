@@ -41,7 +41,7 @@ cp .env.example .env
 
 The project includes a `postinstall` script that automatically installs the GitHub Copilot CLI (`@github/copilot`) globally when you run `bun install`. This ensures all developers have the required Copilot CLI tool without manual installation steps.
 
-**Note**: The postinstall script requires permissions to install packages globally. If the installation fails due to permission issues, you can:
+**Note**: The postinstall script uses `npm` to install `@github/copilot` (rather than `bun`) as this is the officially supported installation method for the GitHub Copilot CLI package. The postinstall script requires permissions to install packages globally. If the installation fails due to permission issues, you can:
 
 1. Install manually with appropriate permissions:
    ```bash
