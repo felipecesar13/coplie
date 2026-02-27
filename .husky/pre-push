@@ -1,0 +1,9 @@
+#!/bin/sh
+
+# Run tests with coverage check. Requires bun for the coverage script.
+if command -v bun >/dev/null 2>&1; then
+  bun run test:coverage
+else
+  echo "Warning: bun not found, running tests without coverage threshold check"
+  npm test
+fi

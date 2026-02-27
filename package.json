@@ -11,17 +11,20 @@
     "lint": "bunx biome check .",
     "lint:fix": "bunx biome check --write .",
     "typecheck": "bunx tsc --noEmit",
-    "postinstall": "npm install -g @github/copilot || echo 'Warning: Failed to install @github/copilot globally. You may need to run: npm install -g @github/copilot manually with appropriate permissions.'"
+    "test:coverage": "bun run scripts/check-coverage.ts",
+    "postinstall": "npm install -g @github/copilot || echo 'Warning: Failed to install @github/copilot globally. You may need to run: npm install -g @github/copilot manually with appropriate permissions.'",
+    "prepare": "husky"
   },
   "dependencies": {
-    "elysia": "^1.0.0",
     "@elysiajs/cors": "^1.0.0",
-    "zod": "^3.22.0",
-    "@github/copilot": "0.0.419"
+    "@github/copilot": "0.0.419",
+    "elysia": "^1.0.0",
+    "zod": "^3.22.0"
   },
   "devDependencies": {
     "@biomejs/biome": "2.4.4",
     "@types/bun": "^1.0.0",
+    "husky": "^9.1.7",
     "typescript": "^5.3.0"
   }
 }
