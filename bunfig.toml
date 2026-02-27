@@ -1,0 +1,15 @@
+[test]
+# Enable coverage by default
+coverage = true
+
+# Set coverage thresholds (80% for both lines and functions)
+coverageThreshold = { lines = 0.8, functions = 0.8 }
+
+# Skip test files from coverage report
+coverageSkipTestFiles = true
+
+# Coverage reporters: text for console, lcov for CI tools
+coverageReporter = ["text", "lcov"]
+
+# Coverage output directory
+coverageDir = "coverage"

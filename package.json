@@ -6,12 +6,12 @@
   "scripts": {
     "dev": "bun run --watch src/index.ts",
     "start": "bun run src/index.ts",
-    "test": "bun test --coverage --env-file=.env.test",
-    "test:watch": "bun test --watch --coverage --env-file=.env.test",
+    "test": "bun test --env-file=.env.test",
+    "test:watch": "bun test --watch --env-file=.env.test",
+    "test:coverage": "bun test --coverage --env-file=.env.test",
     "lint": "bunx biome check .",
     "lint:fix": "bunx biome check --write .",
     "typecheck": "bunx tsc --noEmit",
-    "test:coverage": "bun run scripts/check-coverage.ts",
     "postinstall": "npm install -g @github/copilot || echo 'Warning: Failed to install @github/copilot globally. You may need to run: npm install -g @github/copilot manually with appropriate permissions.'",
     "prepare": "husky"
   },
