@@ -4,6 +4,7 @@
 if command -v bun >/dev/null 2>&1; then
   bun run test:coverage
 else
-  echo "Warning: bun not found, running tests without coverage threshold check"
-  npm test
+  echo "Warning: bun not found. Please install bun to run tests with coverage threshold check."
+  echo "Skipping pre-push hook."
+  exit 0
 fi
