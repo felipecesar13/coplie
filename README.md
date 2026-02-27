@@ -16,9 +16,11 @@ A TypeScript application built with Bun and Elysia that connects to Linear webho
 ## Requirements
 
 - [Bun](https://bun.sh/) >= 1.0
-- [GitHub CLI](https://cli.github.com/) with Copilot extension
+- GitHub Copilot CLI (automatically installed via postinstall script)
 - A Copilot CLI agent named `product_manager` configured
 - Linear account with webhook access
+
+**Note**: The GitHub Copilot CLI (`@github/copilot`) is different from the GitHub CLI (`gh`) Copilot extension. This project uses the standalone Copilot CLI npm package, which is automatically installed during setup.
 
 ## Installation
 
@@ -66,7 +68,7 @@ The project includes a `postinstall` script that automatically installs the GitH
 | `HOST`                  | Server host                   | `0.0.0.0`    |
 | `LINEAR_WEBHOOK_SECRET` | Linear webhook signing secret | -            |
 | `LINEAR_API_KEY`        | Linear API key (optional)     | -            |
-| `COPILOT_CLI_PATH`      | Path to Copilot CLI           | `gh copilot` |
+| `COPILOT_CLI_PATH`      | Path to Copilot CLI           | `copilot`    |
 | `COPILOT_TIMEOUT`       | CLI execution timeout (ms)    | `30000`      |
 | `LOG_LEVEL`             | Logging level                 | `info`       |
 | `LOG_FORMAT`            | Log format (json/text)        | `json`       |

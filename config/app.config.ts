@@ -14,7 +14,7 @@ export const appConfig = {
 
   // Copilot CLI settings
   copilot: {
-    cliPath: process.env.COPILOT_CLI_PATH || 'gh copilot',
+    cliPath: process.env.COPILOT_CLI_PATH || 'copilot',
     timeout: parseInt(process.env.COPILOT_TIMEOUT || '30000', 10),
   },
 
