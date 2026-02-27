@@ -16,7 +16,8 @@
   "dependencies": {
     "elysia": "^1.0.0",
     "@elysiajs/cors": "^1.0.0",
-    "zod": "^3.22.0"
+    "zod": "^3.22.0",
+    "@github/copilot": "0.0.419"
   },
   "devDependencies": {
     "@biomejs/biome": "2.4.4",
