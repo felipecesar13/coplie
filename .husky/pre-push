@@ -1,10 +1,1 @@
-#!/bin/sh
-
-# Run tests with coverage check. Requires bun for the coverage script.
-if command -v bun >/dev/null 2>&1; then
-  bun run test:coverage
-else
-  echo "Warning: bun not found. Please install bun to run tests with coverage threshold check."
-  echo "Skipping pre-push hook."
-  exit 0
-fi
+bun run test:coverage
