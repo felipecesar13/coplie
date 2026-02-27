@@ -16,9 +16,11 @@ A TypeScript application built with Bun and Elysia that connects to Linear webho
 ## Requirements
 
 - [Bun](https://bun.sh/) >= 1.0
-- [GitHub CLI](https://cli.github.com/) with Copilot extension
+- GitHub Copilot CLI (automatically installed via postinstall script)
 - A Copilot CLI agent named `product_manager` configured
 - Linear account with webhook access
+
+**Note**: The GitHub Copilot CLI (`@github/copilot`) is different from the GitHub CLI (`gh`) Copilot extension. This project uses the standalone Copilot CLI npm package, which is automatically installed during setup.
 
 ## Installation
 
@@ -27,12 +29,34 @@ A TypeScript application built with Bun and Elysia that connects to Linear webho
 cd coplie
 
 # Install dependencies
+# Note: This will automatically install @github/copilot globally via the postinstall script
 bun install
 
 # Copy environment variables
 cp .env.example .env
 # Edit .env with your configuration
 ```
+
+### Automated Setup
+
+The project includes a `postinstall` script that automatically installs the GitHub Copilot CLI (`@github/copilot`) globally when you run `bun install`. This ensures all developers have the required Copilot CLI tool without manual installation steps.
+
+**Note**: The postinstall script uses `npm` to install `@github/copilot` (rather than `bun`) as this is the officially supported installation method for the GitHub Copilot CLI package. The postinstall script requires permissions to install packages globally. If the installation fails due to permission issues, you can:
+
+1. Install manually with appropriate permissions:
+   ```bash
+   npm install -g @github/copilot
+   ```
+   or with sudo (Linux/macOS):
+   ```bash
+   sudo npm install -g @github/copilot
+   ```
+
+2. Or configure npm to use a directory you have write access to:
+   ```bash
+   npm config set prefix ~/.npm-global
+   export PATH=~/.npm-global/bin:$PATH
+   ```
 
 ## Configuration
 
@@ -44,7 +68,7 @@ cp .env.example .env
 | `HOST`                  | Server host                   | `0.0.0.0`    |
 | `LINEAR_WEBHOOK_SECRET` | Linear webhook signing secret | -            |
 | `LINEAR_API_KEY`        | Linear API key (optional)     | -            |
-| `COPILOT_CLI_PATH`      | Path to Copilot CLI           | `gh copilot` |
+| `COPILOT_CLI_PATH`      | Path to Copilot CLI           | `copilot`    |
 | `COPILOT_TIMEOUT`       | CLI execution timeout (ms)    | `30000`      |
 | `LOG_LEVEL`             | Logging level                 | `info`       |
 | `LOG_FORMAT`            | Log format (json/text)        | `json`       |

@@ -113,7 +113,7 @@ export class CopilotService {
    */
   private buildCommandArgs(request: CopilotRequest): string[] {
     // The Copilot CLI command structure with agent parameter
-    // Example: gh copilot --agent bug-fixer "issue data"
+    // Example: copilot --agent bug-fixer "issue data"
     const cliParts = this.cliPath.split(' ');
 
     // Escape the prompt for shell

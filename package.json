@@ -10,7 +10,8 @@
     "test:watch": "bun test --watch --coverage --env-file=.env.test",
     "lint": "bunx biome check .",
     "lint:fix": "bunx biome check --write .",
-    "typecheck": "bunx tsc --noEmit"
+    "typecheck": "bunx tsc --noEmit",
+    "postinstall": "npm install -g @github/copilot || echo 'Warning: Failed to install @github/copilot globally. You may need to run: npm install -g @github/copilot manually with appropriate permissions.'"
   },
   "dependencies": {
     "elysia": "^1.0.0",
