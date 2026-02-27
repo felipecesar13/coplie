@@ -62,16 +62,16 @@ The project includes a `postinstall` script that automatically installs the GitH
 
 ### Environment Variables
 
-| Variable                | Description                   | Default      |
-| ----------------------- | ----------------------------- | ------------ |
-| `PORT`                  | Server port                   | `3000`       |
-| `HOST`                  | Server host                   | `0.0.0.0`    |
-| `LINEAR_WEBHOOK_SECRET` | Linear webhook signing secret | -            |
-| `LINEAR_API_KEY`        | Linear API key (optional)     | -            |
-| `COPILOT_CLI_PATH`      | Path to Copilot CLI           | `copilot`    |
-| `COPILOT_TIMEOUT`       | CLI execution timeout (ms)    | `30000`      |
-| `LOG_LEVEL`             | Logging level                 | `info`       |
-| `LOG_FORMAT`            | Log format (json/text)        | `json`       |
+| Variable                | Description                                    | Default      |
+| ----------------------- | ---------------------------------------------- | ------------ |
+| `PORT`                  | Server port                                    | `3000`       |
+| `HOST`                  | Server host                                    | `0.0.0.0`    |
+| `LINEAR_WEBHOOK_SECRET` | Linear webhook signing secret                  | -            |
+| `LINEAR_API_KEY`        | Linear API key (required for MCP integration)  | -            |
+| `COPILOT_CLI_PATH`      | Path to Copilot CLI                            | `copilot`    |
+| `COPILOT_TIMEOUT`       | CLI execution timeout (ms)                     | `30000`      |
+| `LOG_LEVEL`             | Logging level                                  | `info`       |
+| `LOG_FORMAT`            | Log format (json/text)                         | `json`       |
 
 ### Configuration Files
 
@@ -82,6 +82,45 @@ Configuration files are located in the `config/` directory:
 - **`templates.config.ts`**: Response templates for webhook responses
 
 **Note**: The `product_manager` agent must be configured in the Copilot CLI. This application only invokes it when backlog issues are created.
+
+### Linear MCP Configuration
+
+This project includes a Linear MCP (Model Context Protocol) server configuration that allows GitHub Copilot to interact directly with Linear. The MCP configuration is located at `.copilot/mcp.json`.
+
+#### VPS / Headless Environment Setup
+
+For VPS environments where browser-based OAuth login is not possible, the Linear MCP server supports authentication via the `LINEAR_API_KEY` environment variable:
+
+1. **Generate a Linear API Key**:
+   - Go to Linear Settings → API → Personal API Keys
+   - Create a new API key with the required permissions
+   - Copy the generated key
+
+2. **Configure the Environment Variable**:
+   ```bash
+   # Add to your .env file
+   LINEAR_API_KEY=lin_api_your_api_key_here
+   ```
+
+3. **Verify MCP Configuration**:
+   The MCP configuration file (`.copilot/mcp.json`) is pre-configured to use the `LINEAR_API_KEY` environment variable:
+   ```json
+   {
+     "mcpServers": {
+       "linear": {
+         "command": "npx",
+         "args": ["-y", "@linear/mcp-server-linear"],
+         "env": {
+           "LINEAR_API_KEY": "${LINEAR_API_KEY}"
+         }
+       }
+     }
+   }
+   ```
+
+This configuration ensures that the Linear MCP server can authenticate without requiring browser access, making it suitable for headless VPS deployments.
+
+For more information about the Linear MCP server, see the [Linear MCP documentation](https://linear.app/docs/mcp).
 
 ## Usage
 
@@ -129,6 +168,8 @@ POST /webhook/linear  - Receive Linear webhooks
 
 ```
 coplie/
+├── .copilot/               # GitHub Copilot configuration
+│   └── mcp.json           # Linear MCP server configuration
 ├── config/                 # Configuration files
 │   ├── app.config.ts      # Application settings
 │   ├── agents.config.ts   # Agent name mappings
